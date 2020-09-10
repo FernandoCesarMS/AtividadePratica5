@@ -1,3 +1,6 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
 #include "matrix.hpp"
 
 // construtor default - cria uma matriz vazia com nRows = nCols = 0
@@ -87,6 +90,7 @@ double Matrix::get(int row, int col) const{
         return 0.0;
     }
 }
+
 // imprime o conteudo da matriz
 void Matrix::print() const{
     for (int i = 0; i < nRows; i++){
@@ -96,6 +100,7 @@ void Matrix::print() const{
         std::cout << "\n";
     }
 }
+
 // faz com que a matriz torne-se uma matriz identidade
 void Matrix::unit(){
     if (nCols == nRows){
@@ -114,6 +119,7 @@ void Matrix::unit(){
         std::cout << "Essa matriz nao pode ser transformada em identidade";
     }
 }
+
 // faz com que a matriz torne-se uma matriz nula
 void Matrix::zeros(){
     for (int i = 0; i <= nRows; i++){
@@ -136,39 +142,158 @@ void Matrix::ones()
 //---------------------------------------------------------
 //metodos de sobrecarga de operadores
 
-bool Matrix::operator == (const Matrix& that){
+//verifica igualdade entre as matrizes
+bool Matrix::operator == (const Matrix& that) const{
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    if(this->m[i][j] != that.m[i][j]){
+                        return 0;
+                    }
+                }
+            }
+        return 1;
+        }
+    return 0;
+    }
+    return 0;
+}; 
 
-}; //verifica igualdade entre as matrizes
-bool Matrix::operator != (const Matrix& that){
+//verifica desigualdade
+bool Matrix::operator != (const Matrix& that) const{
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    if(this->m[i][j] != that.m[i][j]){
+                        return 1;
+                    }
+                }
+            }
+        return 0;
+        }
+    return 1;
+    }
+    return 1;
+}; 
 
-}; //verifica desigualdade
+//soma
 Matrix Matrix::operator + (const Matrix& that){
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    this->m[i][j] + that.m[i][j];
+                }
+            }
+            return *this;
+        }
+        else{
+        std::cout << "Matrixes incompativeis para essa operacao"; 
+    }
+    }
+    else{
+        std::cout << "Matrixes incompativeis para essa operacao"; 
+    }
+}; 
 
-}; //soma
+//soma
 Matrix Matrix::operator += (const Matrix& that){
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    this->m[i][j] + that.m[i][j];
+                }
+            }
+            return *this;
+        }
+        else{
+        std::cout << "Matrixes incompativeis para essa operacao" ;
+    }
+    }
+    else{
+        std::cout << "Matrixes incompativeis para essa operacao" ;
+    }
+}; 
 
-}; //soma
+//subtrai
 Matrix Matrix::operator - (const Matrix& that){
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    this->m[i][j] - that.m[i][j];
+                }
+            }
+            return *this;
+        }
+        else{
+        std::cout << "Matrixes incompativeis para essa operacao" ;
+    }
+    }
+    else{
+        std::cout << "Matrixes incompativeis para essa operacao" ;
+    }
+}; 
 
-}; //subtrai
+//subtrai
 Matrix Matrix::operator -= (const Matrix& that){
+    if(this->nRows == that.nRows){
+        if(this->nCols == that.nCols){
+            for(int i = 0; i < this->nRows; i++){
+                for(int j = 0; j < this->nCols; j++){
+                    this->m[i][j] - that.m[i][j];
+                }
+            }
+            return *this;
+        }
+        else{
+        std::cout << "Matrixes incompativeis para essa operacao";
+    }
+    }
+    else{
+        std::cout << "Matrixes incompativeis para essa operacao" ;
+    }
+};
 
-}; //subtrai 
+//multiplicação por C
 Matrix Matrix::operator * (int C){
+    for(int i = 0; i < this->nRows; i++){
+        for(int j = 0; j < this->nCols; j++){
+            this -> m[i][j] * C;
+        }
+    }
+    return *this;
+};
 
-}; //multiplicação por C
+//multiplicação por C
 Matrix Matrix::operator *= (int C){
+    for(int i = 0; i < this->nRows; i++){
+        for(int j = 0; j < this->nCols; j++){
+            this -> m[i][j] * C;
+        }
+    }
+    return *this;
+};
 
-}; //multiplicação por C
+//multiplicação por matrix 
 Matrix Matrix::operator * (const Matrix& that){
 
-}; //multiplicação por matrix
+};
+
+//multiplicação por matrix
 Matrix Matrix::operator *= (const Matrix& that){
 
-}; //multiplicação por matrix
+}; 
+
+//impressao da matrix
 void Matrix::operator << (const Matrix) const{
 
-}; //impressao da matrix
+}; 
+
+//transposta
 Matrix& Matrix::operator ~ (){
-    
-}; //transposta
+
+}; 

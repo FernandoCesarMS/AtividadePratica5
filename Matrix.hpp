@@ -33,8 +33,8 @@ class Matrix {
         void ones();
         
         //new others methods
-        bool operator == (const Matrix& that); //verifica igualdade entre as matrizes
-        bool operator != (const Matrix& that); //verifica desigualdade
+        bool operator == (const Matrix& that) const; //verifica igualdade entre as matrizes
+        bool operator != (const Matrix& that) const; //verifica desigualdade
         Matrix operator + (const Matrix& that); //soma
         Matrix operator += (const Matrix& that); //soma
         Matrix operator - (const Matrix& that); //subtrai
