@@ -7,14 +7,14 @@ class Ponto2D{
     public:
         Ponto2D(int xx=0, int yy=0):x(xx),y(yy){ };
         Ponto2D& operator-- ();
-        Ponto2D operator+ (const Ponto2D& ) const;
+        Ponto2D operator+ (const Ponto2D& that) const;
         ~Ponto2D(){}; 
 };
 
-Ponto2D Ponto2D::operator+ (const Ponto2D& aux1) const{
+Ponto2D Ponto2D::operator+ (const Ponto2D& that) const{
     Ponto2D aux2;
-    aux2.x = x + aux1.x;
-    aux2.y = y + aux1.y;
+    aux2.x = x + that.x;
+    aux2.y = y + that.y;
     return aux2;
 }
 
