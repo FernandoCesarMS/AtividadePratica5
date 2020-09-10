@@ -1,9 +1,7 @@
 #include <iostream>
 
 class Ponto2D{
-    
     int x,y;
-    
     public:
         Ponto2D(int xx=0, int yy=0):x(xx),y(yy){ };
         Ponto2D& operator-- ();
