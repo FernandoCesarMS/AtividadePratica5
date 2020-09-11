@@ -280,7 +280,23 @@ Matrix Matrix::operator *= (int C){
 
 //multiplicação por matrix 
 Matrix Matrix::operator * (const Matrix& that){
-
+    Matrix retorno;
+    retorno.nCols = this->nRows;
+    retorno.nRows = that.nCols;
+    retorno.m = new double *[this->nRows];
+    if (this->nCols == that.nRows)
+        for (int i = 0; i < this->nRows; i++)
+        {
+            retorno.m[i] = new double[that.nCols];
+            for (int j = 0; j < that.nCols; j++)
+            {
+                double pos = 0;
+                for (int k = 0; k < this->nCols; k++)
+                    pos += this->m[i][k] * that.m[k][j];
+                retorno.m[i][j] = pos;
+            }
+        }
+    return retorno;
 };
 
 //multiplicação por matrix
