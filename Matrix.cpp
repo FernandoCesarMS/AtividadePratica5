@@ -291,9 +291,30 @@ Matrix Matrix::operator *= (const Matrix& that){
 //impressao da matrix
 void Matrix::operator << (const Matrix) const{
 
+    for (int i = 0; i < this->nRows; i++)
+    {
+        for (int j = 0; j < this->nCols; j++)
+        {
+            std::cout << this->m[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+
 }; 
 
 //transposta
 Matrix& Matrix::operator ~ (){
+
+    int auxRows = nCols;
+    int auxCols = nRows;
+    Matrix aux(auxRows,auxCols);
+    aux.m = new double *[auxRows];
+    for(int i = 0; i < auxRows; i++){
+        aux.m[i] = new double [auxCols];
+        for(int j = 0; j < auxCols; j++){
+            aux.m[i][j] = m[j][i];
+            return m[j][i];
+        }
+    }
 
 }; 
