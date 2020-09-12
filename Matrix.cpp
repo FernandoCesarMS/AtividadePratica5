@@ -301,7 +301,31 @@ Matrix Matrix::operator * (const Matrix& that){
 
 //multiplicação por matrix
 Matrix Matrix::operator *= (const Matrix& that){
-
+    int x = this->getCols();
+    Matrix Aux(this->getRows(),this->getCols());
+    this->nCols = that.getCols();
+    Aux.m = new double *[this->nRows];
+    if (x == that.getRows())
+        for (int i = 0; i < this->nRows; i++)
+        {
+            Aux.m[i] = new double[this->nCols];
+            for (int j = 0; j < this->nCols; j++)
+            {
+                double pos = 0;
+                for (int k = 0; k < x; k++)
+                    pos += this->m[i][k] * that.m[k][j];
+                Aux.m[i][j] = pos;
+                pos = 0;
+            }
+        }
+    for (int i = 0; i < this->nRows; i++)
+    {
+        for (int j = 0; j < this->nCols; j++)
+        {
+            this->m[i][j] = Aux.m[i][j];
+        }
+    }
+    return Aux;
 }; 
 
 //impressao da matrix
