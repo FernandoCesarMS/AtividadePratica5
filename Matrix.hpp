@@ -16,7 +16,7 @@ class Matrix {
         // Construtores
         Matrix();                           
         Matrix(int rows, int cols, const double &value = 0.0);
-        Matrix(fstream &myFile);
+        Matrix(ifstream &myFile);
         Matrix(const Matrix& that);
         // destrutor
         ~Matrix();
