@@ -239,7 +239,7 @@ Matrix Matrix::operator+(const Matrix &that)
             {
                 for (int j = 0; j < this->nCols; j++)
                 {
-                    this->m[i][j] + that.m[i][j];
+                    this->m[i][j] = this->m[i][j] + that.m[i][j];
                 }
             }
             return *this;
@@ -414,20 +414,6 @@ Matrix Matrix::operator*=(const Matrix &that)
     return Aux;
 };
 
-//impressao da matrix
-void Matrix::operator<<(const Matrix) const
-{
-
-    for (int i = 0; i < this->nRows; i++)
-    {
-        for (int j = 0; j < this->nCols; j++)
-        {
-            std::cout << this->m[i][j] << " ";
-        }
-        std::cout << "\n";
-    }
-};
-
 //transposta
 Matrix &Matrix::operator~()
 {
@@ -446,3 +432,33 @@ Matrix &Matrix::operator~()
     }
     return aux;
 };
+
+ostream &operator<<(ostream &op, const Matrix &matriz)
+{
+    for (int i = 0; i < matriz.nRows; i++)
+    {
+        for (int j = 0; j < matriz.nCols; j++)
+        {
+            op << matriz.m[i][j] << " ";
+        }
+        op << "\n";
+    }
+    return op;
+}
+istream &operator>>(istream &op, Matrix &matriz)
+{
+    cout << endl << "Insira o numero de linhas";
+    op >> matriz.nRows;
+    cout << endl << "Insira o numero de colunas";
+    op >> matriz.nCols;
+    matriz.m = new double *[matriz.nRows];
+    for (int i = 0; i < matriz.nRows; i++)
+    {
+        matriz.m[i] = new double[matriz.nCols];
+        for (int j = 0; j < matriz.nCols; j++)
+        {
+            op >> matriz.m[i][j];
+        }
+    }
+    return op;
+}
