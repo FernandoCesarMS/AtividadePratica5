@@ -447,9 +447,9 @@ ostream &operator<<(ostream &op, const Matrix &matriz)
 }
 istream &operator>>(istream &op, Matrix &matriz)
 {
-    cout << endl << "Insira o numero de linhas";
+    cout << endl << "Insira o numero de linhas: ";
     op >> matriz.nRows;
-    cout << endl << "Insira o numero de colunas";
+    cout << endl << "Insira o numero de colunas: ";
     op >> matriz.nCols;
     matriz.m = new double *[matriz.nRows];
     for (int i = 0; i < matriz.nRows; i++)
